@@ -7,8 +7,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
+import com.bearya.intelliscreen.BuildConfig
 import com.bearya.intelliscreen.R
 import com.bearya.intelliscreen.databinding.FragmentSplashBinding
+import com.bearya.intelliscreen.library.ext.VERIFY_RESULT
+import com.tencent.mmkv.MMKV
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -30,7 +33,16 @@ class SplashFragment : Fragment() {
             // 延迟3s
             delay(3000)
             // 跳转到首页菜单
-            Navigation.findNavController(requireActivity(), R.id.fragment_container).navigate(R.id.action_splashFragment_to_homeFragment)
+            if (MMKV.defaultMMKV().decodeBool(VERIFY_RESULT, false)) {
+                Navigation.findNavController(requireActivity(), R.id.fragment_container)
+                    .navigate(SplashFragmentDirections.actionSplashFragmentToHomeFragment())
+            } else if (BuildConfig.DEBUG) {
+                Navigation.findNavController(requireActivity(), R.id.fragment_container)
+                    .navigate(SplashFragmentDirections.actionSplashFragmentToHomeFragment())
+            } else {
+                Navigation.findNavController(requireActivity(), R.id.fragment_container)
+                    .navigate(SplashFragmentDirections.actionSplashFragmentToCodeFragment())
+            }
         }
     }
 

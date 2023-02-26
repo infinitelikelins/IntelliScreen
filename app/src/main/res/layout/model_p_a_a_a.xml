@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"
+        app:srcCompat="@drawable/container_home" />
+
+    <com.shehuan.niv.NiceImageView
+        android:id="@+id/audio_up"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:focusable="true"
+        android:nextFocusUp="@id/audio_left"
+        android:nextFocusDown="@id/audio_right"
+        app:border_color="@color/white"
+        app:border_width="0dp"
+        app:is_cover_src="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.3"
+        app:layout_constraintHorizontal_bias="0.7"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.2"
+        app:layout_constraintWidth_percent="0.3"
+        app:srcCompat="@drawable/container_rhythm" />
+
+    <com.shehuan.niv.NiceImageView
+        android:id="@+id/audio_left"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:focusable="true"
+        android:nextFocusUp="@+id/audio_right"
+        android:nextFocusDown="@id/audio_up"
+        app:border_color="@color/white"
+        app:border_width="0dp"
+        app:is_cover_src="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.3"
+        app:layout_constraintHorizontal_bias="0.449"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.751"
+        app:layout_constraintWidth_percent="0.3"
+        app:srcCompat="@drawable/container_rhythm" />
+
+    <com.shehuan.niv.NiceImageView
+        android:id="@+id/audio_right"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:focusable="true"
+        android:nextFocusUp="@id/audio_up"
+        android:nextFocusDown="@id/audio_left"
+        app:border_color="@color/white"
+        app:border_width="0dp"
+        app:is_cover_src="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.3"
+        app:layout_constraintHorizontal_bias="0.951"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.754"
+        app:layout_constraintWidth_percent="0.3"
+        app:srcCompat="@drawable/container_rhythm" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/play_up"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:backgroundTint="@color/white"
+        android:contentDescription="@null"
+        android:focusable="false"
+        android:src="@drawable/lb_ic_play"
+        android:visibility="invisible"
+        app:borderWidth="0dp"
+        app:elevation="0dp"
+        app:fabSize="mini"
+        app:layout_constraintBottom_toBottomOf="@id/audio_up"
+        app:layout_constraintEnd_toEndOf="@id/audio_up"
+        app:maxImageSize="@dimen/dp16"
+        tools:visibility="visible" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/play_left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:backgroundTint="@color/white"
+        android:contentDescription="@null"
+        android:focusable="false"
+        android:src="@drawable/lb_ic_play"
+        android:visibility="invisible"
+        app:borderWidth="0dp"
+        app:elevation="0dp"
+        app:fabSize="mini"
+        app:layout_constraintBottom_toBottomOf="@id/audio_left"
+        app:layout_constraintEnd_toEndOf="@id/audio_left"
+        app:maxImageSize="@dimen/dp16"
+        tools:visibility="visible" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/play_right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:backgroundTint="@color/white"
+        android:contentDescription="@null"
+        android:focusable="false"
+        android:src="@drawable/lb_ic_play"
+        android:visibility="invisible"
+        app:borderWidth="0dp"
+        app:elevation="0dp"
+        app:fabSize="mini"
+        app:layout_constraintBottom_toBottomOf="@id/audio_right"
+        app:layout_constraintEnd_toEndOf="@id/audio_right"
+        app:maxImageSize="@dimen/dp16"
+        tools:visibility="visible" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

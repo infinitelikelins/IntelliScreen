@@ -6,6 +6,7 @@ import androidx.multidex.MultiDex
 import com.orhanobut.logger.AndroidLogAdapter
 import com.orhanobut.logger.Logger
 import com.orhanobut.logger.PrettyFormatStrategy
+import com.tencent.mmkv.MMKV
 
 class App : Application() {
 
@@ -27,6 +28,9 @@ class App : Application() {
                 return true
             }
         })
+
+        MMKV.initialize(this)
+
     }
 
 }

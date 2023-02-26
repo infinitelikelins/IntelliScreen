@@ -4,11 +4,14 @@ import android.Manifest
 import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.KeyEvent
 import androidx.core.app.ActivityCompat
 import androidx.navigation.Navigation
 import com.bearya.intelliscreen.R
+import com.bearya.intelliscreen.data.event.KeyEvents
 import com.bearya.intelliscreen.databinding.ActivityMainBinding
 import es.dmoral.toasty.Toasty
+import org.greenrobot.eventbus.EventBus
 
 // 权限请求CODE：外部存取设备
 const val REQUEST_CODE_EXTERNAL_STORAGE = 0x10
@@ -30,6 +33,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onSupportNavigateUp(): Boolean = Navigation.findNavController(this, R.id.fragment_container).navigateUp()
+
+    override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
+        EventBus.getDefault().post(KeyEvents(keyCode))
+        return super.onKeyDown(keyCode, event)
+    }
 
     override fun onRequestPermissionsResult(
         requestCode: Int,
