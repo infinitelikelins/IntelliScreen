@@ -60,9 +60,7 @@ class CodeFragment : Fragment() {
                         .also {
                             MMKV.defaultMMKV().encode(VERIFY_RESULT, true)
                             Navigation.findNavController(requireActivity(), R.id.fragment_container)
-                                .navigate(
-                                    SplashFragmentDirections.actionSplashFragmentToHomeFragment()
-                                )
+                                .navigate(SplashFragmentDirections.actionSplashFragmentToHomeFragment())
                         }
                     Invalid -> Toasty.warning(requireContext(), "该授权码已失效", 6000).show()
                     None -> Toasty.error(requireContext(), "该授权码不存在", 6000).show()

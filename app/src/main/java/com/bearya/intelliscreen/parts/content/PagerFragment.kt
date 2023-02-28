@@ -12,7 +12,9 @@ import androidx.navigation.fragment.navArgs
 import com.bearya.intelliscreen.R
 import com.bearya.intelliscreen.data.event.KeyEvents
 import com.bearya.intelliscreen.databinding.FragmentPagerBinding
+import com.google.gson.Gson
 import com.orhanobut.logger.Logger
+import es.dmoral.toasty.Toasty
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode

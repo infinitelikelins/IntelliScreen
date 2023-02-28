@@ -50,13 +50,14 @@
             app:argType="string"
             app:nullable="false" />
 
-        <argument android:name="subTitle"
-            app:argType="integer"
+        <argument android:name="subTitleIcon"
+            app:argType="string"
             app:nullable="false" />
 
-        <argument android:name="subContainer"
-            app:argType="integer"
+        <argument android:name="subContainerIcon"
+            app:argType="string"
             app:nullable="false" />
+
         <action
             android:id="@+id/action_chapterFragment_to_pagerFragment"
             app:destination="@id/pagerFragment" />

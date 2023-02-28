@@ -6,6 +6,7 @@ import androidx.multidex.MultiDex
 import com.orhanobut.logger.AndroidLogAdapter
 import com.orhanobut.logger.Logger
 import com.orhanobut.logger.PrettyFormatStrategy
+import com.tencent.bugly.crashreport.CrashReport
 import com.tencent.mmkv.MMKV
 
 class App : Application() {
@@ -30,7 +31,7 @@ class App : Application() {
         })
 
         MMKV.initialize(this)
-
+        CrashReport.initCrashReport(this, "ce4dea3e47", true)
     }
 
 }

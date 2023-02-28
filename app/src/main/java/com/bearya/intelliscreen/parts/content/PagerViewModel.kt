@@ -1,18 +1,23 @@
 package com.bearya.intelliscreen.parts.content
 
+import android.app.Application
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.map
-import com.bearya.intelliscreen.data.bean.*
+import com.bearya.intelliscreen.data.bean.ChapterPage
 import com.bearya.intelliscreen.library.ext.setData
+import com.bearya.intelliscreen.library.tool.StorageTool
 import com.bearya.intelliscreen.parts.content.model.*
-import com.orhanobut.logger.Logger
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
+import java.io.File
+import java.io.FileReader
 
-class PagerViewModel : ViewModel() {
+class PagerViewModel(app: Application) : AndroidViewModel(app){
 
-    private var playList: MutableList<ChapterPage> = mutableListOf()
+    private val playList: MutableList<ChapterPage> = mutableListOf()
 
     private val playIndex: MutableLiveData<Int> = MutableLiveData<Int>()
 
@@ -34,16 +39,14 @@ class PagerViewModel : ViewModel() {
     }
 
     fun init(file: String) {
-        Logger.d(file)
-        playList.add(ChapterPage(A = PageA("")))
-        playList.add(ChapterPage(B = PageB("","")))
-        playList.add(ChapterPage(C = PageC("")))
-        playList.add(ChapterPage(D = PageD("")))
-        playList.add(ChapterPage(E = PageE("")))
-        playList.add(ChapterPage(F = PageF("")))
-        playList.add(ChapterPage(G = PageG("")))
-        playList.add(ChapterPage(H = PageH("")))
-        playList.add(ChapterPage(I = PageI("")))
+
+        val menus = File(StorageTool.getUsbDir(getApplication()) + file)
+
+        val menusList = Gson().fromJson<List<ChapterPage>>(FileReader(menus), object : TypeToken<List<ChapterPage>>() {}.type)
+
+        playList.addAll(menusList)
+
+        playIndex.value = 0
     }
 
     fun next() {
