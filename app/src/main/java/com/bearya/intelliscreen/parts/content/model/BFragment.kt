@@ -8,6 +8,9 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import com.bearya.intelliscreen.data.bean.PageB
 import com.bearya.intelliscreen.databinding.ModelPVBinding
+import com.bearya.intelliscreen.library.tool.StorageTool
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import es.dmoral.toasty.Toasty
 
 /**
@@ -32,7 +35,26 @@ class BFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        val item = arguments?.getSerializable("item") as? PageB?
+
+        val backgroundPath = StorageTool.getUsbDir(requireContext()) + item?.background
+
+        Glide.with(view)
+            .load(backgroundPath)
+            .into(bindView.background)
+
+        val videoPath = StorageTool.getUsbDir(requireContext()) + item?.video
+
+        Glide.with(view)
+            .setDefaultRequestOptions(RequestOptions()
+                .frame(10)
+                .skipMemoryCache(true)
+                .fitCenter())
+            .load(videoPath)
+            .into(bindView.videoCover)
+
         bindView.videoCover.requestFocus()
+
         bindView.videoCover.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
             val width = if (hasFocus) 3 else 0
             bindView.videoCover.setBorderWidth(width)

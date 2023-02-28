@@ -8,6 +8,8 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import com.bearya.intelliscreen.data.bean.PageI
 import com.bearya.intelliscreen.databinding.ModelPAAABinding
+import com.bearya.intelliscreen.library.tool.StorageTool
+import com.bumptech.glide.Glide
 
 
 /**
@@ -32,6 +34,32 @@ class IFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
+        val item = arguments?.getSerializable("item") as? PageI?
+
+        val backgroundPath = StorageTool.getUsbDir(requireContext()) + item?.background
+
+        Glide.with(view)
+            .load(backgroundPath)
+            .into(bindView.background)
+
+        val audioACover = StorageTool.getUsbDir(requireContext()) + item?.audioAIcon
+
+        Glide.with(view)
+            .load(audioACover)
+            .into(bindView.audioLeft)
+
+        val audioBCover = StorageTool.getUsbDir(requireContext()) + item?.audioBIcon
+
+        Glide.with(view)
+            .load(audioBCover)
+            .into(bindView.audioUp)
+
+        val audioCCover = StorageTool.getUsbDir(requireContext()) + item?.audioCIcon
+
+        Glide.with(view)
+            .load(audioCCover)
+            .into(bindView.audioRight)
 
         bindView.audioLeft.requestFocus()
 

@@ -10,7 +10,6 @@ import com.bearya.intelliscreen.data.bean.PageA
 import com.bearya.intelliscreen.databinding.ModelPBinding
 import com.bearya.intelliscreen.library.tool.StorageTool
 import com.bumptech.glide.Glide
-import es.dmoral.toasty.Toasty
 
 /**
  * 模板1 ： 纯图片 一张 (P)
@@ -35,8 +34,9 @@ class AFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val item = arguments?.getSerializable("item") as? PageA?
+
         val path = StorageTool.getUsbDir(requireContext()) + item?.background
-        Toasty.success(requireContext() , path , 10000).show()
+
         Glide.with(view)
             .load(path)
             .into(bindView.picture)

@@ -1,5 +1,8 @@
 package com.bearya.intelliscreen.data.bean
 
+/**
+ * 三级课件
+ */
 data class ChapterPage(
     val A: PageA? = null,
     val B: PageB? = null,
@@ -57,8 +60,7 @@ data class PageG(
 
 data class PageH(
     val background: String,
-    val audio:String,
-    val audioIcon:String
+    val audio:String
 ) : java.io.Serializable
 
 data class PageI(

@@ -8,6 +8,9 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import com.bearya.intelliscreen.data.bean.PageG
 import com.bearya.intelliscreen.databinding.ModelPVVVVBinding
+import com.bearya.intelliscreen.library.tool.StorageTool
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 
 /**
  * 模板7： 背景一张 + 视频四个 (PVVVV)
@@ -31,6 +34,59 @@ class GFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
+        val item = arguments?.getSerializable("item") as? PageG?
+
+        val backgroundPath = StorageTool.getUsbDir(requireContext()) + item?.background
+
+        Glide.with(view)
+            .load(backgroundPath)
+            .into(bindView.background)
+
+        val videoAPath = StorageTool.getUsbDir(requireContext()) + item?.videoA
+
+        Glide.with(view)
+            .setDefaultRequestOptions(
+                RequestOptions()
+                    .frame(10)
+                    .skipMemoryCache(true)
+                    .fitCenter())
+            .load(videoAPath)
+            .into(bindView.videoLeftUp)
+
+        val videoBPath = StorageTool.getUsbDir(requireContext()) + item?.videoB
+
+        Glide.with(view)
+            .setDefaultRequestOptions(
+                RequestOptions()
+                    .frame(10)
+                    .skipMemoryCache(true)
+                    .fitCenter())
+            .load(videoBPath)
+            .into(bindView.videoLeftDown)
+
+        val videoCPath = StorageTool.getUsbDir(requireContext()) + item?.videoC
+
+        Glide.with(view)
+            .setDefaultRequestOptions(
+                RequestOptions()
+                    .frame(10)
+                    .skipMemoryCache(true)
+                    .fitCenter())
+            .load(videoCPath)
+            .into(bindView.videoRightUp)
+
+        val videoDPath = StorageTool.getUsbDir(requireContext()) + item?.videoD
+
+        Glide.with(view)
+            .setDefaultRequestOptions(
+                RequestOptions()
+                    .frame(10)
+                    .skipMemoryCache(true)
+                    .fitCenter())
+            .load(videoDPath)
+            .into(bindView.videoRightDown)
+
         bindView.videoLeftUp.requestFocus()
 
         bindView.videoLeftUp.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->

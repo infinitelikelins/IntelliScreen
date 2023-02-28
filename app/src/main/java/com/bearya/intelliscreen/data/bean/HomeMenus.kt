@@ -1,5 +1,8 @@
 package com.bearya.intelliscreen.data.bean
 
+/**
+ * 一级菜单
+ */
 data class HomeMenus(
     // 主键
     val id: Int,

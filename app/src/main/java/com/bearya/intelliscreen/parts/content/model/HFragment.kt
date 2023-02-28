@@ -8,6 +8,8 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import com.bearya.intelliscreen.data.bean.PageH
 import com.bearya.intelliscreen.databinding.ModelPABinding
+import com.bearya.intelliscreen.library.tool.StorageTool
+import com.bumptech.glide.Glide
 
 
 /**
@@ -32,6 +34,15 @@ class HFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
+        val item = arguments?.getSerializable("item") as? PageH?
+
+        val backgroundPath = StorageTool.getUsbDir(requireContext()) + item?.background
+
+        Glide.with(view)
+            .load(backgroundPath)
+            .into(bindView.background)
+
         bindView.audio.requestFocus()
         bindView.audio.setOnClickListener {  }
     }

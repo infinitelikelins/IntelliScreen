@@ -8,6 +8,9 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import com.bearya.intelliscreen.data.bean.PageE
 import com.bearya.intelliscreen.databinding.ModelPVVVLRRBinding
+import com.bearya.intelliscreen.library.tool.StorageTool
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import es.dmoral.toasty.Toasty
 
 
@@ -33,6 +36,48 @@ class EFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
+        val item = arguments?.getSerializable("item") as? PageE?
+
+        val backgroundPath = StorageTool.getUsbDir(requireContext()) + item?.background
+
+        Glide.with(view)
+            .load(backgroundPath)
+            .into(bindView.background)
+
+
+        val videoAPath = StorageTool.getUsbDir(requireContext()) + item?.videoA
+
+        Glide.with(view)
+            .setDefaultRequestOptions(
+                RequestOptions()
+                    .frame(10)
+                    .skipMemoryCache(true)
+                    .fitCenter())
+            .load(videoAPath)
+            .into(bindView.videoLeftDown)
+
+        val videoBPath = StorageTool.getUsbDir(requireContext()) + item?.videoB
+
+        Glide.with(view)
+            .setDefaultRequestOptions(
+                RequestOptions()
+                    .frame(10)
+                    .skipMemoryCache(true)
+                    .fitCenter())
+            .load(videoBPath)
+            .into(bindView.videoRightUp)
+
+        val videoCPath = StorageTool.getUsbDir(requireContext()) + item?.videoC
+
+        Glide.with(view)
+            .setDefaultRequestOptions(
+                RequestOptions()
+                    .frame(10)
+                    .skipMemoryCache(true)
+                    .fitCenter())
+            .load(videoCPath)
+            .into(bindView.videoRightDown)
 
         bindView.videoLeftDown.requestFocus()
 
