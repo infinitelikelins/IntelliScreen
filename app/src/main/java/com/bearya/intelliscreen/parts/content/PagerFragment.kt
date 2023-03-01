@@ -12,6 +12,7 @@ import androidx.navigation.fragment.navArgs
 import com.bearya.intelliscreen.R
 import com.bearya.intelliscreen.data.event.KeyEvents
 import com.bearya.intelliscreen.databinding.FragmentPagerBinding
+import com.bearya.intelliscreen.library.tool.Music
 import com.google.gson.Gson
 import com.orhanobut.logger.Logger
 import es.dmoral.toasty.Toasty
@@ -30,6 +31,7 @@ class PagerFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel.init(args.file)
+        Music.init(requireContext())
         EventBus.getDefault().register(this)
     }
 
@@ -62,6 +64,7 @@ class PagerFragment : Fragment() {
     }
 
     override fun onDestroy() {
+        Music.destroy()
         EventBus.getDefault().unregister(this)
         super.onDestroy()
     }

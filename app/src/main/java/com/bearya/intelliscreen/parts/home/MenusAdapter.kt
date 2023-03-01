@@ -5,7 +5,7 @@ import androidx.core.view.ViewCompat
 import com.bearya.intelliscreen.R
 import com.bearya.intelliscreen.data.bean.HomeMenus
 import com.bearya.intelliscreen.databinding.ItemHomeMenusBinding
-import com.bearya.intelliscreen.library.tool.StorageTool
+import com.bearya.intelliscreen.library.tool.Storage
 import com.bumptech.glide.Glide
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
@@ -18,7 +18,7 @@ class MenusAdapter : BaseQuickAdapter<HomeMenus, MenusViewHolder>(R.layout.item_
     override fun convert(holder: MenusViewHolder, item: HomeMenus) {
 
         Glide.with(context)
-            .load(StorageTool.getUsbDir(context) + item.icon.replace("/",File.separator))
+            .load(Storage.getUsbDir(context) + item.icon.replace("/",File.separator))
             .into(holder.bindView.unitCover)
 
         holder.itemView.onFocusChangeListener = View.OnFocusChangeListener { v, hasFocus ->

@@ -12,8 +12,7 @@
         android:scaleType="fitXY"
         android:focusable="false"
         android:nextFocusUp="@id/video_cover"
-        android:nextFocusDown="@id/video_cover"
-        app:srcCompat="@drawable/container_home" />
+        android:nextFocusDown="@id/video_cover" />
 
     <com.shehuan.niv.NiceImageView
         android:id="@+id/video_cover"
@@ -29,7 +28,6 @@
         app:layout_constraintHorizontal_bias="0.9"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintWidth_percent="0.6"
-        app:srcCompat="@drawable/container_rhythm" />
+        app:layout_constraintWidth_percent="0.6" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

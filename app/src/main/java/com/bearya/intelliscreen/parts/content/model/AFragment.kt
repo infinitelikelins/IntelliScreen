@@ -8,7 +8,7 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import com.bearya.intelliscreen.data.bean.PageA
 import com.bearya.intelliscreen.databinding.ModelPBinding
-import com.bearya.intelliscreen.library.tool.StorageTool
+import com.bearya.intelliscreen.library.tool.Storage
 import com.bumptech.glide.Glide
 
 /**
@@ -35,7 +35,7 @@ class AFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val item = arguments?.getSerializable("item") as? PageA?
 
-        val path = StorageTool.getUsbDir(requireContext()) + item?.background
+        val path = Storage.getUsbDir(requireContext()) + item?.background
 
         Glide.with(view)
             .load(path)

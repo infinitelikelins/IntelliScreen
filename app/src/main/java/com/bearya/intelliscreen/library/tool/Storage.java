@@ -13,7 +13,7 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-public class StorageTool {
+public class Storage {
     private static final String TAG = "StorageUtils";
 
     //定义GB的计算常量

@@ -10,7 +10,7 @@
         android:layout_height="match_parent"
         android:focusable="false"
         android:scaleType="fitXY"
-        app:srcCompat="@drawable/container_rhythm" />
+       />
 
     <com.shehuan.niv.NiceImageView
         android:id="@+id/video_left_up"
@@ -28,8 +28,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.2"
-        app:layout_constraintWidth_percent="0.3"
-        app:srcCompat="@drawable/container_home" />
+        app:layout_constraintWidth_percent="0.3" />
 
     <com.shehuan.niv.NiceImageView
         android:id="@+id/video_left_down"
@@ -47,8 +46,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/video_left_up"
         app:layout_constraintVertical_bias="0.6"
-        app:layout_constraintWidth_percent="0.3"
-        app:srcCompat="@drawable/container_home" />
+        app:layout_constraintWidth_percent="0.3" />
 
     <com.shehuan.niv.NiceImageView
         android:id="@+id/video_right_up"
@@ -65,8 +63,7 @@
         app:layout_constraintStart_toEndOf="@id/video_left_up"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.6"
-        app:layout_constraintWidth_percent="0.3"
-        app:srcCompat="@drawable/container_home" />
+        app:layout_constraintWidth_percent="0.3" />
 
     <com.shehuan.niv.NiceImageView
         android:id="@+id/video_right_down"
@@ -83,7 +80,6 @@
         app:layout_constraintStart_toEndOf="@id/video_left_down"
         app:layout_constraintTop_toBottomOf="@+id/video_right_up"
         app:layout_constraintVertical_bias="0.6"
-        app:layout_constraintWidth_percent="0.3"
-        app:srcCompat="@drawable/container_home" />
+        app:layout_constraintWidth_percent="0.3" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,11 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
+import com.bearya.intelliscreen.R
 import com.bearya.intelliscreen.data.bean.PageH
 import com.bearya.intelliscreen.databinding.ModelPABinding
-import com.bearya.intelliscreen.library.tool.StorageTool
+import com.bearya.intelliscreen.library.tool.Music
+import com.bearya.intelliscreen.library.tool.Storage
 import com.bumptech.glide.Glide
 
 
@@ -37,14 +40,25 @@ class HFragment : Fragment() {
 
         val item = arguments?.getSerializable("item") as? PageH?
 
-        val backgroundPath = StorageTool.getUsbDir(requireContext()) + item?.background
+        val backgroundPath = Storage.getUsbDir(requireContext()) + item?.background
 
         Glide.with(view)
             .load(backgroundPath)
             .into(bindView.background)
 
         bindView.audio.requestFocus()
-        bindView.audio.setOnClickListener {  }
+
+        bindView.audio.setOnClickListener {
+            Music.autoAudio(Storage.getUsbDir(requireContext()) + item?.audio) { isPlaying , message ->
+                bindView.audio.setImageResource(if (isPlaying) R.drawable.baseline_pause_24 else R.drawable.baseline_play_24)
+            }
+        }
+
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        Music.stop()
     }
 
 }

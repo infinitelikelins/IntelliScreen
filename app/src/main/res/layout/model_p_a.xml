@@ -8,8 +8,7 @@
         android:id="@+id/background"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scaleType="fitXY"
-        app:srcCompat="@drawable/container_home" />
+        android:scaleType="fitXY" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/audio"
@@ -17,11 +16,13 @@
         android:layout_height="wrap_content"
         android:layout_margin="24dp"
         android:backgroundTint="@color/white"
+        android:contentDescription="@null"
         android:focusable="true"
-        android:src="@drawable/lb_ic_play"
+        android:src="@drawable/baseline_play_24"
+        app:borderWidth="0dp"
+        app:elevation="2dp"
         app:fabSize="normal"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:contentDescription="@null" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

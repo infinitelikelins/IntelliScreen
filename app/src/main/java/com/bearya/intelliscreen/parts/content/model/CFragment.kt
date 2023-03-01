@@ -8,10 +8,10 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import com.bearya.intelliscreen.data.bean.PageC
 import com.bearya.intelliscreen.databinding.ModelPVVUDBinding
-import com.bearya.intelliscreen.library.tool.StorageTool
+import com.bearya.intelliscreen.library.tool.Storage
+import com.bearya.intelliscreen.parts.video.VideoActivity
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
-import es.dmoral.toasty.Toasty
 
 /**
  * 模板3 ： 背景一张 + 上下视频两个 (PVVUD)
@@ -38,13 +38,13 @@ class CFragment : Fragment() {
 
         val item = arguments?.getSerializable("item") as? PageC?
 
-        val backgroundPath = StorageTool.getUsbDir(requireContext()) + item?.background
+        val backgroundPath = Storage.getUsbDir(requireContext()) + item?.background
 
         Glide.with(view)
             .load(backgroundPath)
             .into(bindView.background)
 
-        val videoAPath = StorageTool.getUsbDir(requireContext()) + item?.videoA
+        val videoAPath = Storage.getUsbDir(requireContext()) + item?.videoA
 
         Glide.with(view)
             .setDefaultRequestOptions(
@@ -55,7 +55,7 @@ class CFragment : Fragment() {
             .load(videoAPath)
             .into(bindView.videoUp)
 
-        val videoBPath = StorageTool.getUsbDir(requireContext()) + item?.videoB
+        val videoBPath = Storage.getUsbDir(requireContext()) + item?.videoB
 
         Glide.with(view)
             .setDefaultRequestOptions(
@@ -72,13 +72,13 @@ class CFragment : Fragment() {
             val width = if (hasFocus) 3 else 0
             bindView.videoUp.setBorderWidth(width)
         }
-        bindView.videoUp.setOnClickListener {  Toasty.success(requireContext() , "up" , 2000).show() }
+        bindView.videoUp.setOnClickListener {  VideoActivity.start(requireContext() , videoAPath) }
 
         bindView.videoDown.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
             val width = if (hasFocus) 3 else 0
             bindView.videoDown.setBorderWidth(width)
         }
-        bindView.videoDown.setOnClickListener {  Toasty.success(requireContext() , "down" , 2000).show() }
+        bindView.videoDown.setOnClickListener {  VideoActivity.start(requireContext() , videoBPath) }
 
     }
 

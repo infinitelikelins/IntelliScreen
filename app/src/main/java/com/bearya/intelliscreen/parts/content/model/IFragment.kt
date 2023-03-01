@@ -6,11 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
+import com.bearya.intelliscreen.R
 import com.bearya.intelliscreen.data.bean.PageI
 import com.bearya.intelliscreen.databinding.ModelPAAABinding
-import com.bearya.intelliscreen.library.tool.StorageTool
+import com.bearya.intelliscreen.library.tool.Music
+import com.bearya.intelliscreen.library.tool.Storage
 import com.bumptech.glide.Glide
-
 
 /**
  * 模板9： 背景一张 + 音频三个 （PAAA）
@@ -37,25 +38,25 @@ class IFragment : Fragment() {
 
         val item = arguments?.getSerializable("item") as? PageI?
 
-        val backgroundPath = StorageTool.getUsbDir(requireContext()) + item?.background
+        val backgroundPath = Storage.getUsbDir(requireContext()) + item?.background
 
         Glide.with(view)
             .load(backgroundPath)
             .into(bindView.background)
 
-        val audioACover = StorageTool.getUsbDir(requireContext()) + item?.audioAIcon
+        val audioACover = Storage.getUsbDir(requireContext()) + item?.audioAIcon
 
         Glide.with(view)
             .load(audioACover)
             .into(bindView.audioLeft)
 
-        val audioBCover = StorageTool.getUsbDir(requireContext()) + item?.audioBIcon
+        val audioBCover = Storage.getUsbDir(requireContext()) + item?.audioBIcon
 
         Glide.with(view)
             .load(audioBCover)
             .into(bindView.audioUp)
 
-        val audioCCover = StorageTool.getUsbDir(requireContext()) + item?.audioCIcon
+        val audioCCover = Storage.getUsbDir(requireContext()) + item?.audioCIcon
 
         Glide.with(view)
             .load(audioCCover)
@@ -66,20 +67,43 @@ class IFragment : Fragment() {
         bindView.audioUp.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
             bindView.audioUp.setBorderWidth(if (hasFocus) 3 else 0)
             bindView.playUp.visibility = if (hasFocus) View.VISIBLE else View.INVISIBLE
+            if (hasFocus) Music.stop() else bindView.playUp.setImageResource(R.drawable.baseline_play_24)
         }
         bindView.audioLeft.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
             bindView.audioLeft.setBorderWidth(if (hasFocus) 3 else 0)
             bindView.playLeft.visibility = if (hasFocus) View.VISIBLE else View.INVISIBLE
+            if (hasFocus) Music.stop() else bindView.playLeft.setImageResource(R.drawable.baseline_play_24)
         }
         bindView.audioRight.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
             bindView.audioRight.setBorderWidth(if (hasFocus) 3 else 0)
             bindView.playRight.visibility = if (hasFocus) View.VISIBLE else View.INVISIBLE
+            if (hasFocus) Music.stop() else bindView.playRight.setImageResource(R.drawable.baseline_play_24)
         }
 
-        bindView.audioUp.setOnClickListener {  }
-        bindView.audioRight.setOnClickListener {  }
-        bindView.audioLeft.setOnClickListener {  }
+        bindView.audioUp.setOnClickListener {
+            Music.autoAudio(Storage.getUsbDir(requireContext()) + item?.audioB) { isPlaying , message ->
+                bindView.playUp.setImageResource(if (isPlaying) R.drawable.baseline_pause_24 else R.drawable.baseline_play_24)
+            }
+        }
+
+        bindView.audioRight.setOnClickListener {
+            Music.autoAudio(Storage.getUsbDir(requireContext()) + item?.audioC) { isPlaying , message ->
+                bindView.playRight.setImageResource(if (isPlaying) R.drawable.baseline_pause_24 else R.drawable.baseline_play_24)
+            }
+        }
+
+        bindView.audioLeft.setOnClickListener {
+            Music.autoAudio(Storage.getUsbDir(requireContext()) + item?.audioA) { isPlaying , message ->
+                bindView.playLeft.setImageResource(if (isPlaying) R.drawable.baseline_pause_24 else R.drawable.baseline_play_24)
+            }
+        }
 
     }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        Music.stop()
+    }
+
 
 }

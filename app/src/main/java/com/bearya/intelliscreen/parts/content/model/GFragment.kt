@@ -8,7 +8,8 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import com.bearya.intelliscreen.data.bean.PageG
 import com.bearya.intelliscreen.databinding.ModelPVVVVBinding
-import com.bearya.intelliscreen.library.tool.StorageTool
+import com.bearya.intelliscreen.library.tool.Storage
+import com.bearya.intelliscreen.parts.video.VideoActivity
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 
@@ -37,13 +38,13 @@ class GFragment : Fragment() {
 
         val item = arguments?.getSerializable("item") as? PageG?
 
-        val backgroundPath = StorageTool.getUsbDir(requireContext()) + item?.background
+        val backgroundPath = Storage.getUsbDir(requireContext()) + item?.background
 
         Glide.with(view)
             .load(backgroundPath)
             .into(bindView.background)
 
-        val videoAPath = StorageTool.getUsbDir(requireContext()) + item?.videoA
+        val videoAPath = Storage.getUsbDir(requireContext()) + item?.videoA
 
         Glide.with(view)
             .setDefaultRequestOptions(
@@ -54,7 +55,7 @@ class GFragment : Fragment() {
             .load(videoAPath)
             .into(bindView.videoLeftUp)
 
-        val videoBPath = StorageTool.getUsbDir(requireContext()) + item?.videoB
+        val videoBPath = Storage.getUsbDir(requireContext()) + item?.videoB
 
         Glide.with(view)
             .setDefaultRequestOptions(
@@ -65,7 +66,7 @@ class GFragment : Fragment() {
             .load(videoBPath)
             .into(bindView.videoLeftDown)
 
-        val videoCPath = StorageTool.getUsbDir(requireContext()) + item?.videoC
+        val videoCPath = Storage.getUsbDir(requireContext()) + item?.videoC
 
         Glide.with(view)
             .setDefaultRequestOptions(
@@ -76,7 +77,7 @@ class GFragment : Fragment() {
             .load(videoCPath)
             .into(bindView.videoRightUp)
 
-        val videoDPath = StorageTool.getUsbDir(requireContext()) + item?.videoD
+        val videoDPath = Storage.getUsbDir(requireContext()) + item?.videoD
 
         Glide.with(view)
             .setDefaultRequestOptions(
@@ -106,10 +107,10 @@ class GFragment : Fragment() {
             bindView.videoRightDown.setBorderWidth(width)
         }
 
-        bindView.videoLeftUp.setOnClickListener {  }
-        bindView.videoLeftDown.setOnClickListener {  }
-        bindView.videoRightUp.setOnClickListener {  }
-        bindView.videoRightDown.setOnClickListener {  }
+        bindView.videoLeftUp.setOnClickListener {  VideoActivity.start(requireContext(),videoAPath) }
+        bindView.videoLeftDown.setOnClickListener {  VideoActivity.start(requireContext(),videoBPath) }
+        bindView.videoRightUp.setOnClickListener {  VideoActivity.start(requireContext(),videoCPath) }
+        bindView.videoRightDown.setOnClickListener {  VideoActivity.start(requireContext(),videoDPath) }
 
     }
 

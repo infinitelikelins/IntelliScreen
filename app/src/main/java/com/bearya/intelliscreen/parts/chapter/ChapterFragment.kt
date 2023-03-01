@@ -10,10 +10,8 @@ import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.bearya.intelliscreen.R
-import com.bearya.intelliscreen.data.bean.MenuChapter
 import com.bearya.intelliscreen.databinding.FragmentChapterBinding
-import com.bearya.intelliscreen.library.tool.StorageTool
+import com.bearya.intelliscreen.library.tool.Storage
 import com.bumptech.glide.Glide
 
 class ChapterFragment : Fragment() {
@@ -39,8 +37,8 @@ class ChapterFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
-        Glide.with(requireContext()).load(StorageTool.getUsbDir(requireContext()) + args.subTitleIcon).into(bindView.chapterIcon)
-        Glide.with(requireContext()).load(StorageTool.getUsbDir(requireContext()) + args.subContainerIcon).into(bindView.background)
+        Glide.with(requireContext()).load(Storage.getUsbDir(requireContext()) + args.subTitleIcon).into(bindView.chapterIcon)
+        Glide.with(requireContext()).load(Storage.getUsbDir(requireContext()) + args.subContainerIcon).into(bindView.background)
 
         bindView.chapters.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)

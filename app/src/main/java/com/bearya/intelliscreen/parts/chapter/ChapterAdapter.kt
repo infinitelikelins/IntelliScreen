@@ -5,7 +5,7 @@ import androidx.core.view.ViewCompat
 import com.bearya.intelliscreen.R
 import com.bearya.intelliscreen.data.bean.MenuChapter
 import com.bearya.intelliscreen.databinding.ItemMenuChapterBinding
-import com.bearya.intelliscreen.library.tool.StorageTool
+import com.bearya.intelliscreen.library.tool.Storage
 import com.bumptech.glide.Glide
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
@@ -17,7 +17,7 @@ class ChapterAdapter : BaseQuickAdapter<MenuChapter, ChapterViewHolder>(R.layout
     override fun convert(holder: ChapterViewHolder, item: MenuChapter) {
 
         Glide.with(context)
-            .load(StorageTool.getUsbDir(context) +item.itemChapterIcon)
+            .load(Storage.getUsbDir(context) +item.itemChapterIcon)
             .into(holder.bindView.itemChapter)
 
         holder.itemView.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->

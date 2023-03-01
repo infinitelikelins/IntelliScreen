@@ -8,7 +8,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.map
 import com.bearya.intelliscreen.data.bean.ChapterPage
 import com.bearya.intelliscreen.library.ext.setData
-import com.bearya.intelliscreen.library.tool.StorageTool
+import com.bearya.intelliscreen.library.tool.Storage
 import com.bearya.intelliscreen.parts.content.model.*
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
@@ -40,7 +40,7 @@ class PagerViewModel(app: Application) : AndroidViewModel(app){
 
     fun init(file: String) {
 
-        val menus = File(StorageTool.getUsbDir(getApplication()) + file)
+        val menus = File(Storage.getUsbDir(getApplication()) + file)
 
         val menusList = Gson().fromJson<List<ChapterPage>>(FileReader(menus), object : TypeToken<List<ChapterPage>>() {}.type)
 
