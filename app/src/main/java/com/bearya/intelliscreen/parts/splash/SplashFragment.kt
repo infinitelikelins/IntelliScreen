@@ -60,11 +60,10 @@ class SplashFragment : Fragment() {
             // 跳转到首页菜单
             if (MMKV.defaultMMKV().decodeBool(VERIFY_RESULT, false)) {
                 Navigation.findNavController(requireActivity(), R.id.fragment_container).navigate(SplashFragmentDirections.actionSplashFragmentToHomeFragment())
-//            } else if (BuildConfig.DEBUG) {
-//                Navigation.findNavController(requireActivity(), R.id.fragment_container).navigate(SplashFragmentDirections.actionSplashFragmentToHomeFragment())
             } else {
                 Navigation.findNavController(requireActivity(), R.id.fragment_container).navigate(SplashFragmentDirections.actionSplashFragmentToCodeFragment())
             }
+
         }
 
     }

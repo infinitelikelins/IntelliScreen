@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import com.bearya.intelliscreen.R
@@ -49,8 +48,8 @@ class HFragment : Fragment() {
         bindView.audio.requestFocus()
 
         bindView.audio.setOnClickListener {
-            Music.autoAudio(Storage.getUsbDir(requireContext()) + item?.audio) { isPlaying , message ->
-                bindView.audio.setImageResource(if (isPlaying) R.drawable.baseline_pause_24 else R.drawable.baseline_play_24)
+            Music.autoAudio(Storage.getUsbDir(requireContext()) + item?.audio) { isPlaying , _ ->
+                bindView.audio.setImageResource(if (isPlaying) R.drawable.music_stop else R.drawable.music_play)
             }
         }
 

@@ -19,7 +19,10 @@
 
         <action
             android:id="@+id/action_splashFragment_to_codeFragment"
-            app:destination="@id/codeFragment" />
+            app:destination="@id/codeFragment"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/splashFragment"
+            app:popUpToInclusive="true" />
 
     </fragment>
 
@@ -27,7 +30,6 @@
         android:id="@+id/homeFragment"
         android:name="com.bearya.intelliscreen.parts.home.HomeFragment"
         tools:layout="@layout/fragment_home">
-
 
         <action
             android:id="@+id/action_homeFragment_to_chapterFragment"

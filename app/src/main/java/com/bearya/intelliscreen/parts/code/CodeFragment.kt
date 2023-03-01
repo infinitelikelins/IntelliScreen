@@ -12,12 +12,13 @@ import androidx.navigation.Navigation
 import com.bearya.intelliscreen.R
 import com.bearya.intelliscreen.databinding.FragmentCodeBinding
 import com.bearya.intelliscreen.library.ext.*
-import com.bearya.intelliscreen.parts.splash.SplashFragmentDirections
 import com.kaopiz.kprogresshud.KProgressHUD
 import com.tencent.mmkv.MMKV
 import es.dmoral.toasty.Toasty
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 /**
  * 云验证应用
@@ -51,17 +52,19 @@ class CodeFragment : Fragment() {
         val hud = KProgressHUD.create(requireContext(), KProgressHUD.Style.SPIN_INDETERMINATE)
             .setLabel("正在验证中").setCancellable(false).setAutoDismiss(true).setAnimationSpeed(2)
             .show()
-        lifecycleScope.launch {
-            delay(1000)
-            viewModel.activateVerify(data).observe(viewLifecycleOwner) {
+        viewModel.activateVerify(data).observe(viewLifecycleOwner) {
+            lifecycleScope.launch {
+                delay(1000)
                 hud.dismiss()
                 when (it) {
-                    Success -> Toasty.success(requireContext(), "开通成功啦", 6000).show()
-                        .also {
-                            MMKV.defaultMMKV().encode(VERIFY_RESULT, true)
+                    Success -> {
+                        Toasty.success(requireContext(), "开通成功啦", 6000).show()
+                        MMKV.defaultMMKV().encode(VERIFY_RESULT, true)
+                        withContext(Dispatchers.Main) {
                             Navigation.findNavController(requireActivity(), R.id.fragment_container)
-                                .navigate(SplashFragmentDirections.actionSplashFragmentToHomeFragment())
+                                .navigate(CodeFragmentDirections.actionCodeFragmentToHomeFragment())
                         }
+                    }
                     Invalid -> Toasty.warning(requireContext(), "该授权码已失效", 6000).show()
                     None -> Toasty.error(requireContext(), "该授权码不存在", 6000).show()
                     Empty -> Toasty.error(requireContext(), "请确认您输入的授权码", 6000).show()
@@ -71,6 +74,5 @@ class CodeFragment : Fragment() {
             }
         }
     }
-
 
 }

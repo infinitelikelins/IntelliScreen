@@ -17,9 +17,11 @@ class HomeViewModel(app: Application) : AndroidViewModel(app) {
 
         val menus = File(Storage.getUsbDir(getApplication()) + File.separator + "IntelliScreen" + File.separator + "menus.json")
 
-        val menusList = Gson().fromJson<List<HomeMenus>>(FileReader(menus), object : TypeToken<List<HomeMenus>>() {}.type)
+        if (menus.exists()) {
+            val menusList = Gson().fromJson<List<HomeMenus>>(FileReader(menus), object : TypeToken<List<HomeMenus>>() {}.type)
 
-        list.addAll(menusList)
+            list.addAll(menusList)
+        }
 
     }
 

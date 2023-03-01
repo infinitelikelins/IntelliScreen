@@ -19,20 +19,30 @@ class VideoActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         bindView = ActivityVideoBinding.inflate(layoutInflater)
         setContentView(bindView.root)
 
         bindView.video.setVideoPath(intent.getStringExtra("videoPath"))
         bindView.video.setMediaController(MediaController(this))
 
+        bindView.video.setOnCompletionListener {
+            finish()
+        }
+
         bindView.video.requestFocus()
         bindView.video.start()
 
     }
 
+    override fun onStop() {
+        super.onStop()
+        bindView.video.stopPlayback()
+    }
+
     override fun onDestroy() {
         super.onDestroy()
-        bindView.video.stopPlayback()
+
     }
 
 }

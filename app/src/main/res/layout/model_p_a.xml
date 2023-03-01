@@ -10,19 +10,16 @@
         android:layout_height="match_parent"
         android:scaleType="fitXY" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/audio"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_margin="24dp"
         android:backgroundTint="@color/white"
         android:contentDescription="@null"
         android:focusable="true"
-        android:src="@drawable/baseline_play_24"
-        app:borderWidth="0dp"
-        app:elevation="2dp"
-        app:fabSize="normal"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/music_play" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

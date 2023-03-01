@@ -42,11 +42,13 @@ class PagerViewModel(app: Application) : AndroidViewModel(app){
 
         val menus = File(Storage.getUsbDir(getApplication()) + file)
 
-        val menusList = Gson().fromJson<List<ChapterPage>>(FileReader(menus), object : TypeToken<List<ChapterPage>>() {}.type)
+        if(menus.exists()) {
+            val menusList = Gson().fromJson<List<ChapterPage>>(FileReader(menus), object : TypeToken<List<ChapterPage>>() {}.type)
 
-        playList.addAll(menusList)
+            playList.addAll(menusList)
 
-        playIndex.value = 0
+            playIndex.value = 0
+        }
     }
 
     fun next() {
