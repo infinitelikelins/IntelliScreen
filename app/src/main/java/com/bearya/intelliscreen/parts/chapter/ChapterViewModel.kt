@@ -17,9 +17,14 @@ class ChapterViewModel(app: Application) : AndroidViewModel(app) {
         val chapterFile = File(Storage.getUsbDir(getApplication()) + fileDir)
 
         if (chapterFile.exists()) {
-            val chapterList = Gson().fromJson<List<MenuChapter>>(FileReader(chapterFile), object : TypeToken<List<MenuChapter>>() {}.type)
-            list.addAll(chapterList)
-        }
+            try {
+                val chapterList = Gson().fromJson<List<MenuChapter>>(FileReader(chapterFile), object : TypeToken<List<MenuChapter>>() {}.type)
+                list.clear()
+                list.addAll(chapterList)
+            } catch (ex: java.lang.Exception) {
+                list.clear()
+            }
+        } else list.clear()
     }
 
 }

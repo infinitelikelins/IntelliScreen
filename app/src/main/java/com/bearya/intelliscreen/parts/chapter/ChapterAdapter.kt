@@ -7,6 +7,7 @@ import com.bearya.intelliscreen.data.bean.MenuChapter
 import com.bearya.intelliscreen.databinding.ItemMenuChapterBinding
 import com.bearya.intelliscreen.library.tool.Storage
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 
@@ -18,6 +19,7 @@ class ChapterAdapter : BaseQuickAdapter<MenuChapter, ChapterViewHolder>(R.layout
 
         Glide.with(context)
             .load(Storage.getUsbDir(context) +item.itemChapterIcon)
+            .diskCacheStrategy(DiskCacheStrategy.NONE)
             .into(holder.bindView.itemChapter)
 
         holder.itemView.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->

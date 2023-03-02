@@ -11,6 +11,7 @@ import com.bearya.intelliscreen.databinding.ModelPVVVVBinding
 import com.bearya.intelliscreen.library.tool.Storage
 import com.bearya.intelliscreen.parts.video.VideoActivity
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
 
 /**
@@ -42,6 +43,7 @@ class GFragment : Fragment() {
 
         Glide.with(view)
             .load(backgroundPath)
+            .diskCacheStrategy(DiskCacheStrategy.NONE)
             .into(bindView.background)
 
         val videoAPath = Storage.getUsbDir(requireContext()) + item?.videoA
@@ -53,6 +55,7 @@ class GFragment : Fragment() {
                     .skipMemoryCache(true)
                     .fitCenter())
             .load(videoAPath)
+            .diskCacheStrategy(DiskCacheStrategy.NONE)
             .into(bindView.videoLeftUp)
 
         val videoBPath = Storage.getUsbDir(requireContext()) + item?.videoB
@@ -64,7 +67,8 @@ class GFragment : Fragment() {
                     .skipMemoryCache(true)
                     .fitCenter())
             .load(videoBPath)
-            .into(bindView.videoLeftDown)
+            .diskCacheStrategy(DiskCacheStrategy.NONE)
+            .into(bindView.videoRightUp)
 
         val videoCPath = Storage.getUsbDir(requireContext()) + item?.videoC
 
@@ -75,7 +79,8 @@ class GFragment : Fragment() {
                     .skipMemoryCache(true)
                     .fitCenter())
             .load(videoCPath)
-            .into(bindView.videoRightUp)
+            .diskCacheStrategy(DiskCacheStrategy.NONE)
+            .into(bindView.videoLeftDown)
 
         val videoDPath = Storage.getUsbDir(requireContext()) + item?.videoD
 
@@ -86,6 +91,7 @@ class GFragment : Fragment() {
                     .skipMemoryCache(true)
                     .fitCenter())
             .load(videoDPath)
+            .diskCacheStrategy(DiskCacheStrategy.NONE)
             .into(bindView.videoRightDown)
 
         bindView.videoLeftUp.requestFocus()
@@ -108,8 +114,8 @@ class GFragment : Fragment() {
         }
 
         bindView.videoLeftUp.setOnClickListener {  VideoActivity.start(requireContext(),videoAPath) }
-        bindView.videoLeftDown.setOnClickListener {  VideoActivity.start(requireContext(),videoBPath) }
-        bindView.videoRightUp.setOnClickListener {  VideoActivity.start(requireContext(),videoCPath) }
+        bindView.videoRightUp.setOnClickListener {  VideoActivity.start(requireContext(),videoBPath) }
+        bindView.videoLeftDown.setOnClickListener {  VideoActivity.start(requireContext(),videoCPath) }
         bindView.videoRightDown.setOnClickListener {  VideoActivity.start(requireContext(),videoDPath) }
 
     }

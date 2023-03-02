@@ -12,6 +12,7 @@ import com.bearya.intelliscreen.databinding.ModelPABinding
 import com.bearya.intelliscreen.library.tool.Music
 import com.bearya.intelliscreen.library.tool.Storage
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 
 
 /**
@@ -43,6 +44,7 @@ class HFragment : Fragment() {
 
         Glide.with(view)
             .load(backgroundPath)
+            .diskCacheStrategy(DiskCacheStrategy.NONE)
             .into(bindView.background)
 
         bindView.audio.requestFocus()

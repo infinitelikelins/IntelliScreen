@@ -7,6 +7,7 @@ import com.bearya.intelliscreen.data.bean.HomeMenus
 import com.bearya.intelliscreen.databinding.ItemHomeMenusBinding
 import com.bearya.intelliscreen.library.tool.Storage
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import java.io.File
@@ -19,6 +20,7 @@ class MenusAdapter : BaseQuickAdapter<HomeMenus, MenusViewHolder>(R.layout.item_
 
         Glide.with(context)
             .load(Storage.getUsbDir(context) + item.icon.replace("/",File.separator))
+            .diskCacheStrategy(DiskCacheStrategy.NONE)
             .into(holder.bindView.unitCover)
 
         holder.itemView.onFocusChangeListener = View.OnFocusChangeListener { v, hasFocus ->

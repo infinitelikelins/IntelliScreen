@@ -11,6 +11,7 @@ import com.bearya.intelliscreen.databinding.ModelPVVVLMRBinding
 import com.bearya.intelliscreen.library.tool.Storage
 import com.bearya.intelliscreen.parts.video.VideoActivity
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
 
 /**
@@ -42,6 +43,7 @@ class FFragment : Fragment() {
 
         Glide.with(view)
             .load(backgroundPath)
+            .diskCacheStrategy(DiskCacheStrategy.NONE)
             .into(bindView.background)
 
         val videoAPath = Storage.getUsbDir(requireContext()) + item?.videoA
@@ -53,6 +55,7 @@ class FFragment : Fragment() {
                     .skipMemoryCache(true)
                     .fitCenter())
             .load(videoAPath)
+            .diskCacheStrategy(DiskCacheStrategy.NONE)
             .into(bindView.videoLeft)
 
         val videoBPath = Storage.getUsbDir(requireContext()) + item?.videoB
@@ -64,6 +67,7 @@ class FFragment : Fragment() {
                     .skipMemoryCache(true)
                     .fitCenter())
             .load(videoBPath)
+            .diskCacheStrategy(DiskCacheStrategy.NONE)
             .into(bindView.videoMiddle)
 
         val videoCPath = Storage.getUsbDir(requireContext()) + item?.videoC
@@ -75,6 +79,7 @@ class FFragment : Fragment() {
                     .skipMemoryCache(true)
                     .fitCenter())
             .load(videoCPath)
+            .diskCacheStrategy(DiskCacheStrategy.NONE)
             .into(bindView.videoRight)
 
         bindView.videoLeft.requestFocus()

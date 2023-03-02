@@ -11,6 +11,7 @@ import com.bearya.intelliscreen.databinding.ModelPVBinding
 import com.bearya.intelliscreen.library.tool.Storage
 import com.bearya.intelliscreen.parts.video.VideoActivity
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
 
 /**
@@ -41,6 +42,7 @@ class BFragment : Fragment() {
 
         Glide.with(view)
             .load(backgroundPath)
+            .diskCacheStrategy(DiskCacheStrategy.NONE)
             .into(bindView.background)
 
         val videoPath = Storage.getUsbDir(requireContext()) + item?.video
@@ -51,6 +53,7 @@ class BFragment : Fragment() {
                 .skipMemoryCache(true)
                 .fitCenter())
             .load(videoPath)
+            .diskCacheStrategy(DiskCacheStrategy.NONE)
             .into(bindView.videoCover)
 
         bindView.videoCover.requestFocus()

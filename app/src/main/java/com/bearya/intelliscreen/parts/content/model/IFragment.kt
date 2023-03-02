@@ -12,6 +12,7 @@ import com.bearya.intelliscreen.databinding.ModelPAAABinding
 import com.bearya.intelliscreen.library.tool.Music
 import com.bearya.intelliscreen.library.tool.Storage
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 
 /**
  * 模板9： 背景一张 + 音频三个 （PAAA）
@@ -42,24 +43,28 @@ class IFragment : Fragment() {
 
         Glide.with(view)
             .load(backgroundPath)
+            .diskCacheStrategy(DiskCacheStrategy.NONE)
             .into(bindView.background)
 
         val audioACover = Storage.getUsbDir(requireContext()) + item?.audioAIcon
 
         Glide.with(view)
             .load(audioACover)
+            .diskCacheStrategy(DiskCacheStrategy.NONE)
             .into(bindView.audioLeft)
 
         val audioBCover = Storage.getUsbDir(requireContext()) + item?.audioBIcon
 
         Glide.with(view)
             .load(audioBCover)
+            .diskCacheStrategy(DiskCacheStrategy.NONE)
             .into(bindView.audioUp)
 
         val audioCCover = Storage.getUsbDir(requireContext()) + item?.audioCIcon
 
         Glide.with(view)
             .load(audioCCover)
+            .diskCacheStrategy(DiskCacheStrategy.NONE)
             .into(bindView.audioRight)
 
         bindView.audioLeft.requestFocus()
@@ -104,6 +109,5 @@ class IFragment : Fragment() {
         super.onDestroyView()
         Music.stop()
     }
-
 
 }

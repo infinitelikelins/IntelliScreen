@@ -9,6 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.GridLayoutManager
+import com.bearya.intelliscreen.R
 import com.bearya.intelliscreen.databinding.FragmentHomeBinding
 
 // 首页菜单
@@ -37,6 +38,8 @@ class HomeFragment : Fragment() {
         bindView.menus.layoutManager = GridLayoutManager(requireContext(), 3, GridLayoutManager.VERTICAL, false)
         bindView.menus.itemAnimator = DefaultItemAnimator()
         bindView.menus.adapter = menusAdapter
+
+        menusAdapter.setEmptyView(R.layout.empty_list)
 
         menusAdapter.setOnItemClickListener { _, v, position ->
 

@@ -10,6 +10,7 @@ import com.bearya.intelliscreen.data.bean.PageA
 import com.bearya.intelliscreen.databinding.ModelPBinding
 import com.bearya.intelliscreen.library.tool.Storage
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 
 /**
  * 模板1 ： 纯图片 一张 (P)
@@ -39,6 +40,7 @@ class AFragment : Fragment() {
 
         Glide.with(view)
             .load(path)
+            .diskCacheStrategy(DiskCacheStrategy.NONE)
             .into(bindView.picture)
     }
 
