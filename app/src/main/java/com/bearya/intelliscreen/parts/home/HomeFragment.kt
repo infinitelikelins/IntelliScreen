@@ -49,7 +49,9 @@ class HomeFragment : Fragment() {
 
         }
 
-        menusAdapter.setNewInstance(viewModel.list)
+        viewModel.list.observe(viewLifecycleOwner) {
+            menusAdapter.setNewInstance(it)
+        }
 
     }
 

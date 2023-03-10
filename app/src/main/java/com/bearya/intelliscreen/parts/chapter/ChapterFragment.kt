@@ -57,9 +57,12 @@ class ChapterFragment : Fragment() {
         chapterAdapter.setEmptyView(R.layout.empty_list)
 
         chapterAdapter.setOnItemClickListener { _, v, position ->
-            Navigation.findNavController(v).navigate(ChapterFragmentDirections.actionChapterFragmentToPagerFragment(viewModel.list[position].itemFile))
+            Navigation.findNavController(v).navigate(ChapterFragmentDirections.actionChapterFragmentToPagerFragment(chapterAdapter.getItem(position).itemFile))
         }
-        chapterAdapter.setNewInstance(viewModel.list)
+
+        viewModel.list.observe(viewLifecycleOwner) {
+            chapterAdapter.setNewInstance(it)
+        }
 
     }
 

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY" />
+
+    <com.shehuan.niv.NiceImageView
+        android:id="@+id/audio_middle"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:focusable="true"
+        android:nextFocusUp="@id/audio_left"
+        android:nextFocusDown="@id/audio_right"
+        app:border_color="@color/white"
+        app:border_width="0dp"
+        app:is_cover_src="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.569444"
+        app:layout_constraintWidth_percent="0.271875"
+        app:layout_constraintHeight_percent="0.402778"/>
+
+    <com.shehuan.niv.NiceImageView
+        android:id="@+id/audio_left"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="16dp"
+        android:focusable="true"
+        android:nextFocusUp="@+id/audio_right"
+        android:nextFocusDown="@id/audio_middle"
+        app:border_color="@color/white"
+        app:border_width="0dp"
+        app:is_cover_src="false"
+        app:layout_constraintBottom_toBottomOf="@id/audio_middle"
+        app:layout_constraintEnd_toStartOf="@id/audio_middle"
+        app:layout_constraintTop_toTopOf="@id/audio_middle"
+        app:layout_constraintWidth_percent="0.25" />
+
+    <com.shehuan.niv.NiceImageView
+        android:id="@+id/audio_right"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:focusable="true"
+        android:nextFocusUp="@id/audio_middle"
+        android:nextFocusDown="@id/audio_left"
+        app:border_color="@color/white"
+        app:border_width="0dp"
+        app:is_cover_src="false"
+        app:layout_constraintBottom_toBottomOf="@id/audio_middle"
+        app:layout_constraintStart_toEndOf="@id/audio_middle"
+        app:layout_constraintTop_toTopOf="@id/audio_middle"
+        app:layout_constraintWidth_percent="0.25" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/play_middle"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_margin="4dp"
+        android:backgroundTint="@color/white"
+        android:contentDescription="@null"
+        android:focusable="false"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/audio_middle"
+        app:layout_constraintStart_toStartOf="@id/audio_middle"
+        app:layout_constraintTop_toBottomOf="@id/audio_middle"
+        app:srcCompat="@drawable/music_play"
+        tools:visibility="visible" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/play_left"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_margin="4dp"
+        android:backgroundTint="@color/white"
+        android:contentDescription="@null"
+        android:focusable="false"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/audio_left"
+        app:layout_constraintStart_toStartOf="@id/audio_left"
+        app:layout_constraintTop_toBottomOf="@id/audio_left"
+        app:srcCompat="@drawable/music_play"
+        tools:visibility="visible" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/play_right"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_margin="4dp"
+        android:backgroundTint="@color/white"
+        android:contentDescription="@null"
+        android:focusable="false"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/audio_right"
+        app:layout_constraintStart_toStartOf="@id/audio_right"
+        app:layout_constraintTop_toBottomOf="@id/audio_right"
+        app:srcCompat="@drawable/music_play"
+        tools:visibility="visible" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

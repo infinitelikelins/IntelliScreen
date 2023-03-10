@@ -54,7 +54,6 @@ class PagerFragment : Fragment() {
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun onKeyEvents(event: KeyEvents) {
-        Logger.d("点击事件 - ${event.keyCode}")
         when (event.keyCode) {
             KeyEvent.KEYCODE_DPAD_RIGHT -> viewModel.next()
             KeyEvent.KEYCODE_DPAD_LEFT -> viewModel.up()

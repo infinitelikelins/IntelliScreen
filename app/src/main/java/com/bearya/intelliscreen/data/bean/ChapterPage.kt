@@ -21,7 +21,9 @@ data class ChapterPage(
     // 模板8： 背景一张 + 音频一个 （PA）
     val H: PageH? = null,
     // 模板9： 背景一张 + 音频三个 （PAAA）
-    val I: PageI? = null
+    val I: PageI? = null,
+    // 模板10： 背景一张 + 音频三个 （PAAALMR）
+    val J:PageJ? = null
 )
 
 data class PageA(
@@ -73,6 +75,16 @@ data class PageH(
 ) : java.io.Serializable
 
 data class PageI(
+    val background: String,
+    val audioA:String,
+    val audioB:String,
+    val audioC:String,
+    val audioAIcon:String,
+    val audioBIcon:String,
+    val audioCIcon:String
+) : java.io.Serializable
+
+data class PageJ(
     val background: String,
     val audioA:String,
     val audioB:String,
