@@ -9,6 +9,7 @@ import com.bearya.intelliscreen.library.tool.Storage
 import com.bearya.intelliscreen.parts.content.model.*
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import es.dmoral.toasty.Toasty
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.io.File
@@ -18,7 +19,7 @@ class PagerViewModel(app: Application) : AndroidViewModel(app) {
 
     private val playList: MutableList<ChapterPage> = mutableListOf()
 
-    private val playIndex: MutableLiveData<Int> = MutableLiveData<Int>()
+    val playIndex: MutableLiveData<Int> = MutableLiveData<Int>()
 
     val currentFragment: LiveData<Fragment?> = playIndex.map {
         if (playList.isEmpty()) return@map EmptyFragment.newInstance()
@@ -35,6 +36,7 @@ class PagerViewModel(app: Application) : AndroidViewModel(app) {
                 item.H != null -> HFragment.newInstance(item.H)
                 item.I != null -> IFragment.newInstance(item.I)
                 item.J != null -> JFragment.newInstance(item.J)
+                item.K != null -> KFragment.newInstance(item.K)
                 else -> EmptyFragment.newInstance()
             }
         } else EmptyFragment.newInstance()
@@ -61,9 +63,12 @@ class PagerViewModel(app: Application) : AndroidViewModel(app) {
 
     fun next() {
         if (playList.isNotEmpty()) {
-            playIndex.value?.takeIf { it < (playList.size - 1) }
-                ?.plus(1)
-                ?.apply { playIndex.setData(this) }
+            if (playIndex.value == playList.size - 1)
+                Toasty.info(getApplication(), "这是最后一页了", Toasty.LENGTH_SHORT).show()
+            else
+                playIndex.value?.takeIf { it < (playList.size - 1) }
+                    ?.plus(1)
+                    ?.apply { playIndex.setData(this) }
         }
     }
 

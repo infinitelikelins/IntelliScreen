@@ -23,7 +23,9 @@ data class ChapterPage(
     // 模板9： 背景一张 + 音频三个 （PAAA）
     val I: PageI? = null,
     // 模板10： 背景一张 + 音频三个 （PAAALMR）
-    val J:PageJ? = null
+    val J: PageJ? = null,
+    // 模板11 ： 背景一张 + 视频一个右上（PVU）
+    val K: PageK? = null
 )
 
 data class PageA(
@@ -37,59 +39,64 @@ data class PageB(
 
 data class PageC(
     val background: String,
-    val videoA:String,
-    val videoB:String
+    val videoA: String,
+    val videoB: String
 ) : java.io.Serializable
 
 data class PageD(
     val background: String,
-    val videoA:String,
-    val videoB:String
+    val videoA: String,
+    val videoB: String
 ) : java.io.Serializable
 
 data class PageE(
     val background: String,
-    val videoA:String,
-    val videoB:String,
-    val videoC:String
+    val videoA: String,
+    val videoB: String,
+    val videoC: String
 ) : java.io.Serializable
 
 data class PageF(
     val background: String,
-    val videoA:String,
-    val videoB:String,
-    val videoC:String
+    val videoA: String,
+    val videoB: String,
+    val videoC: String
 ) : java.io.Serializable
 
 data class PageG(
     val background: String,
-    val videoA:String,
-    val videoB:String,
-    val videoC:String,
-    val videoD:String
+    val videoA: String,
+    val videoB: String,
+    val videoC: String,
+    val videoD: String
 ) : java.io.Serializable
 
 data class PageH(
     val background: String,
-    val audio:String
+    val audio: String
 ) : java.io.Serializable
 
 data class PageI(
     val background: String,
-    val audioA:String,
-    val audioB:String,
-    val audioC:String,
-    val audioAIcon:String,
-    val audioBIcon:String,
-    val audioCIcon:String
+    val audioA: String,
+    val audioB: String,
+    val audioC: String,
+    val audioAIcon: String,
+    val audioBIcon: String,
+    val audioCIcon: String
 ) : java.io.Serializable
 
 data class PageJ(
     val background: String,
-    val audioA:String,
-    val audioB:String,
-    val audioC:String,
-    val audioAIcon:String,
-    val audioBIcon:String,
-    val audioCIcon:String
+    val audioA: String,
+    val audioB: String,
+    val audioC: String,
+    val audioAIcon: String,
+    val audioBIcon: String,
+    val audioCIcon: String
+) : java.io.Serializable
+
+data class PageK(
+    val background: String,
+    val video: String
 ) : java.io.Serializable

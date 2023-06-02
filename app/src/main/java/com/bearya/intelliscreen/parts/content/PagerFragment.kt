@@ -13,7 +13,6 @@ import com.bearya.intelliscreen.R
 import com.bearya.intelliscreen.data.event.KeyEvents
 import com.bearya.intelliscreen.databinding.FragmentPagerBinding
 import com.bearya.intelliscreen.library.tool.Music
-import com.orhanobut.logger.Logger
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
@@ -49,6 +48,9 @@ class PagerFragment : Fragment() {
                     replace(R.id.page_container, fragment)
                 }
             }
+        }
+        viewModel.playIndex.observe(viewLifecycleOwner) {
+            bindView.index.text = "${it+1}"
         }
     }
 
